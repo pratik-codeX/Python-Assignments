@@ -8,25 +8,29 @@ Output: Palindrome
 #1  2   1  ==  1    2   1
 def CheckPalindrome(No):
     Flag = False
+    Temp = No
     Digit = 0
     Rev = 0
-    Cnt = 0
-    while(No != 0):
-        Digit = No % 10
-        
-        Cnt = Cnt +1 
-        
-        No = No // 10
+
+    while(Temp > 0):
+        Digit = Temp % 10
+        Rev = Rev * 10 + Digit
+        Temp = Temp // 10
+    
+    if(Rev == No):
+        Flag = True
+    
+    return Flag
 
 def main():
     Flag = False
     Value = int(input("Enter Number :"))
     
     Flag = CheckPalindrome(Value)
-    '''if(Flag == True):
+    if(Flag == True):
         print("Its Palindrome Number")
     else:
-        print("Its Not Palindrome Number ")'''
+        print("Its Not Palindrome Number ")
 
 if __name__ == "__main__":
     main()
