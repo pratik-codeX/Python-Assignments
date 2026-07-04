@@ -1,52 +1,39 @@
 '''
-3. Write a program which accepts one number and checks whether it is perfect number or
-not.
+3. Write a lambda function which accepts two numbers and returns maximum number.
 Input: 6
 Output: Perfect Number
 '''
 ###########################################################################
-##   	Function Name  	:  ChkPrime
-##  	Description    	:  Check Prime
-##  	Input          	:  int
-##	    Output         	:  boolean
+##      Function Name  	:  ChkMaximum
+##  	Description    	:  Maximum numbers
+##  	Input          	:  int,int
+##      Output         	:  int
 ##	    Date           	:  1/7/2026
 ##  	Author  		:  Pratik Raut
 ###########################################################################
 
-
-def ChkPerfect(No):
-    Flag = False
-    FactSum = 0
-    for i in range(1,No+1//2):
-        if(No % i == 0):
-            FactSum = i + FactSum
-    
-    if(FactSum == No):
-        Flag = True
-        return Flag
-
-    return Flag
-        
+Max = Maximum = lambda No1 , No2 : No1 > No2
+      
 ###########################################################################
-##   	Function Name  	:  main
-##  	Description    	:  Client 
-##  	Input          	:  
-##	    Output         	: 
-##	    Date           	:   1/7/2026
-##  	Author  		:   Pratik Raut
+##  Function Name  	:  main
+##  Description    	:  Client 
+##  Input          	:  
+##	Output         	: 
+##	Date           	:   1/7/2026
+##  Author  		:   Pratik Raut
 ###########################################################################
 
 def main():
-    Value = 0 
+    Value1 = int(input("Enter Number :"))
+    Value2 = int(input("Enter Number :"))
     Flag = False
-    Ret = False
-    Value = int(input("Enter Number :"))
-    Ret = ChkPerfect(Value)
     
-    if(Ret == True):
-        print("This is Perfect Number")
+    Flag = Maximum(Value1,Value2)
+
+    if(Flag == True):
+        print(Value1,"is Maximum")
     else:
-        print("This is Not Perfect Number")
+        print(Value2,"is Maximum")
 
 if __name__ == "__main__":
     main()

@@ -1,6 +1,5 @@
 '''
-5. Write a lambda function which accepts one number and returns True if number is even
-otherwise False.
+7. Write a lambda function which accepts one number and returns True if divisible by 5
 '''
     
 ###########################################################################
@@ -12,7 +11,7 @@ otherwise False.
 ##  	Author  		:  Pratik Raut
 ###########################################################################
 
-ChkEven = lambda No:(No % 2 == 0)
+CheckDivisible = lambda No : (No % 5 == 0)
     
 ###########################################################################
 ##   	Function Name  	:  main
@@ -26,11 +25,9 @@ ChkEven = lambda No:(No % 2 == 0)
 def main():
     Flag = False
     Value = 0
-
     Value = int(input("Enter Number :"))
-
-    Flag = ChkEven(Value) 
+    Flag = CheckDivisible(Value)
     print(Flag)
-    
+
 if __name__ == "__main__":
     main()

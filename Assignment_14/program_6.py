@@ -1,25 +1,25 @@
 '''
-5. Write a lambda function which accepts one number and returns True if number is even
-otherwise False.
+6. Write a lambda function which accepts one number and returns True if number is odd
+otherwise False
 '''
     
 ###########################################################################
-##   	Function Name  	:  DisplayBinary
-##  	Description    	:  Check Prime
+##   	Function Name  	:  ChkOdd
+##  	Description    	:  Check Odd
 ##  	Input          	:  int
 ##	    Output         	:  boolean
-##	    Date           	:  1/7/2026
+##	    Date           	:  4/7/2026
 ##  	Author  		:  Pratik Raut
 ###########################################################################
 
-ChkEven = lambda No:(No % 2 == 0)
+ChkOdd = lambda No:(No % 2 != 0)
     
 ###########################################################################
 ##   	Function Name  	:  main
 ##  	Description    	:  Client 
 ##  	Input          	:  
 ##	    Output         	: 
-##	    Date           	:   1/7/2026
+##	    Date           	:   4/7/2026
 ##  	Author  		:   Pratik Raut
 ###########################################################################
 
@@ -29,7 +29,7 @@ def main():
 
     Value = int(input("Enter Number :"))
 
-    Flag = ChkEven(Value) 
+    Flag = ChkOdd(Value) 
     print(Flag)
     
 if __name__ == "__main__":

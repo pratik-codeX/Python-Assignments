@@ -1,5 +1,5 @@
 '''
-4. Write a program which accepts one number and prints binary equivalent.
+4. Write a lambda function which accepts two numbers and returns minimum number.
 '''
 ###########################################################################
 ##   	Function Name  	:  DisplayBinary
@@ -10,13 +10,7 @@
 ##  	Author  		:  Pratik Raut
 ###########################################################################
 
-def DisplayBinary(No):
-    Binary = 0
-    Digit = 0
-    while(No != 0):
-        Binary = No % 2
-        print(Binary)
-        No = No // 2
+Minimum = lambda No1,No2 : No1 < No2
 
 ###########################################################################
 ##   	Function Name  	:  main
@@ -28,9 +22,16 @@ def DisplayBinary(No):
 ###########################################################################
 
 def main():
-    Value = 0
-    Value = int(input("Enter Number :"))
-    DisplayBinary(Value)
+    Flag = False
+    Value1 = int(input("Enter first Number :"))
+    Value2 = int(input("Enter second Number"))
+
+    Flag = Minimum(Value1,Value2)
     
+    if(Flag == True):
+        print(Value1,"is Minimum")
+    else:
+        print(Value2,"is Minimum")
+
 if __name__ == "__main__":
     main()
