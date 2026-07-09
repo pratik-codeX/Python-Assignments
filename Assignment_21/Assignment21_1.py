@@ -1,23 +1,31 @@
-'''
-1: Design a Python application that creates two separate threads named Even and Odd.
-•The Even thread should display the first 10 even numbers.
-•The Odd thread should display the first 10 odd numbers.
-•Both threads should execute independently using the threading module.
-•Ensure proper thread creation and execution.
-'''
-
-
 import threading 
 
-def DisplayEven(No):
-    print(30*"*")
-    for i in range(0,No):
-        print(i*2)
+def PrimeList(Arr):
+    lst = []
+    for i in Arr:
+        if i == 2:
+            lst.append(i)
 
-def DisplayOdd(No):
-    print(30*"*")
-    for i in range(No):
-        print(i*2+1)
+        for j in range(2,i+1//2):
+            if i % j == 0:
+               break
+            else:
+                lst.append(i)
+                break
+
+    print(lst)
+
+def NonPrimeList(Arr):
+    lst = []
+    for i in Arr:
+        for j in range(2,i+1//2):
+            if i % j != 0 :
+                break
+            else:
+                lst.append(i)
+                break
+                   
+    print(lst)
 
 ###########################################################################
 ##   	Function Name  	:  main
@@ -30,14 +38,17 @@ def DisplayOdd(No):
 
 def main():
 
-    Even = threading.Thread(target = DisplayEven,args=(10,))
-    Odd = threading.Thread(target=DisplayOdd,args=(10,))
+    Arr = [2,5,4,8,7]
 
-    Even.start()
-    Odd.start()
+    Prime = threading.Thread(target = PrimeList,args=(Arr,))
+    NonPrime = threading.Thread(target=NonPrimeList,args=(Arr,))
 
-    Even.join()
-    Odd.join()
+    Prime.start()
+    NonPrime.start()
+
+    Prime.join()
+    NonPrime.join()
    
+
 if __name__ == "__main__":
     main()

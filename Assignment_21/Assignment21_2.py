@@ -1,20 +1,28 @@
+'''
+: Design a Python application that creates two threads.
+•Thread 1 should calculate and display the maximum element from an list.
+•Thread 2 should calculate and display the minimum element from the same list.
+•The list should be accepted from the user.
+'''
 import threading
 
-def EvenFactorsSummation(No):
-    FactSum = 0
-    for i in range(2,No):
-        if No % i == 0 and i % 2 == 0:
-            FactSum = i + FactSum
+def MaxElement(Arr):
+    Max = Arr[0]
 
-    print(FactSum)
+    for i in Arr:
+        if Max < i :
+            Max = i
+    
+    print(Max)
 
-def OddFactorsSummation(No):
-    FactSum = 0
-    for i in range(2,No):
-        if No % i == 0 and i % 2 != 0:
-            FactSum = i + FactSum
+def MinElement(Arr):
+    Min = Arr[0]
 
-    print(FactSum)
+    for i in Arr:
+        if Min > i :
+            Min = i
+    
+    print(Min)
 
 
 ###########################################################################
@@ -27,16 +35,17 @@ def OddFactorsSummation(No):
 ###########################################################################
 
 def main():
-    Value = int(input("Enter Number :"))
+    Lst = [10,2,30,40,5]
+    #Value = int(input("Enter Number :"))
 
-    EvenFactor = threading.Thread(target=EvenFactorsSummation,args=(Value,))
-    OddFactor = threading.Thread(target=OddFactorsSummation,args=(Value,))
+    Thread1 = threading.Thread(target=MaxElement,args=(Lst,))
+    Thread2 = threading.Thread(target=MinElement,args=(Lst,))
     
-    EvenFactor.start()
-    EvenFactor.join()
+    Thread1.start()
+    Thread1.join()
 
-    OddFactor.start()
-    OddFactor.join()
+    Thread2.start()
+    Thread2.join()
 
 
 if __name__ == "__main__":

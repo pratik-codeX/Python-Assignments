@@ -1,37 +1,25 @@
 '''
-3: Design a Python application that creates two threads named EvenList and OddList.
-•Both threads should accept a list of integers as input.
-•The EvenList thread should:
-◦Calculate and display their sum.
-The OddList thread should:
-◦Extract all odd elements from the list.
-◦Calculate and display their sum.
-Threads should run concurrently
+3: Design a Python application where multiple threads update a shared variable.
+•Use a Lock to avoid race conditions.
+•Each thread should increment the shared counter multiple times.
+•Display the nal value of the counter after all threads complete execution.
 
 '''
 import threading
 
-def EvenSum(Arr):
-    lst = list()
-    Sum = 0
-    for i in Arr:
-        if i % 2 == 0:
-            lst.append(i)
-            Sum = i + Sum
-            
-    print(Sum)
-    print(lst) 
+thread_lock = threading.Lock()
+Cnt = 0
 
-def OddSum(Arr):
-    Sum = 0
-    lst = list()
-    for i in Arr:
-        if i % 2 != 0:
-            lst.append(i)
-            Sum = i + Sum
-            
-    print(Sum)
-    print(lst)
+def Counter():
+    global Cnt
+    
+    for i in range(100):
+        
+        thread_lock.acquire()
+        
+        Cnt = Cnt + 1               #Critical Section
+
+        thread_lock.release()
 
 
 ###########################################################################
@@ -44,16 +32,30 @@ def OddSum(Arr):
 ###########################################################################
 
 def main():
-    List = [2,3,4,5]
 
-    EvenList = threading.Thread(target=EvenSum,args=(List,))
-    OddList = threading.Thread(target=OddSum,args=(List,))
+    print("Inside Main")
+
+    t1 = threading.Thread(target=Counter)
+    t2 = threading.Thread(target=Counter)
+    t3 = threading.Thread(target=Counter)
+    t4 = threading.Thread(target=Counter)
+    t5 = threading.Thread(target=Counter)
+
+    t1.start()
+    t2.start()
+    t3.start()
+    t4.start()
+    t5.start()
     
-    EvenList.start()
-    OddList.start()
+    t1.join()
+    t2.join()
+    t3.join()
+    t4.join()
+    t5.join()
 
-    EvenList.join()
-    OddList.join()
+    print(Cnt)
+
+    print("End of main")
 
 if __name__ == "__main__":
     main()

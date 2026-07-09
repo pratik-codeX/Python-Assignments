@@ -22,7 +22,8 @@ def lowerCase(Arr):
     
     print(Lst)
     print(Count)
-    print("Thread id :",threading.get_ident())
+
+    print("Thread ID:", threading.get_ident())
 
 def upperCase(Arr):
     Lst = []

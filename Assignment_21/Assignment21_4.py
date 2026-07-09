@@ -1,53 +1,29 @@
 '''
-4: Design a Python application that creates three threads named Small, Capital, and
-Digits.
-•All threads should accept a string as input.
-•The Small thread should count and display the number of lowercase characters.
-•The Capital thread should count and display the number of uppercase characters.
-•The Digits thread should count and display the number of numeric digits.
-•Each thread must also display:
-◦Thread ID
-◦Thread Name
+Design a Python application that creates two threads.
+•Thread 1 should compute the sum of elements from a list.
+•Thread 2 should compute the product of elements from the same list.
+•Return the results to the main thread and display them.
 '''
 
 import threading
 
-def lowerCase(Arr):
-    Lst = []
-    Count = 0
-    for i in Arr:
-        if i > 'a' and i < 'z':
-            Lst.append(i)
-            Count =1 + Count
-    
-    print(Lst)
-    print(Count)
-    print("Thread id :",threading.get_ident())
+List = [10,20,30]
+Sum = 0
+Multi = 0
 
-def upperCase(Arr):
-    Lst = []
-    Count = 0
-    for i in Arr:
-        if i >= 'A' and i <= 'Z':
-            Lst.append(i)
-            Count =  1 + Count
-    
-    print(Lst)
-    print(Count)
+def Sum():
+    global List
+    global Sum
+    Sum = 0
+    for i in List:
+        Sum = Sum + i
 
-
-def CountDigit(Arr):
-    Lst = []
-    Count = 0
-
-    for i in Arr:
-        if i >= '0' and i <= '9':
-            Lst.append(i)
-            Count = 1 + Count
-    
-    print(Lst)
-    print(Count)
-
+def  Multi():
+    global List
+    global Multi
+    Multi = 1
+    for i in List:
+        Multi = Multi * i
 
 ###########################################################################
 ##   	Function Name  	:  main
@@ -59,21 +35,19 @@ def CountDigit(Arr):
 ###########################################################################
 
 def main():
-    Str = "1PraTik2"
+    Arr = [10,20,30,40]
+    t1 = threading.Thread(target=Sum)
+    t2 = threading.Thread(target=Multi)
 
-    Small = threading.Thread(target=lowerCase,args=(Str,))
-    Capital = threading.Thread(target=upperCase,args=(Str,))
-    Digit = threading.Thread(target=CountDigit,args=(Str,))
+    t1.start()
+    t2.start()
 
-    Small.start()
-    Capital.start()
-    Digit.start()
+    t1.join()
+    t2.join()
 
-    Small.get_ident()
-
-    Small.join()
-    Capital.join()
-    Digit.join()
+    print(List)
+    print("Sum is :",Sum)
+    print("Multiplication is :",Multi)
    
 if __name__ == "__main__":
     main()
