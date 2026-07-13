@@ -1,24 +1,16 @@
 '''
-4. Write a program that calculates
-1^5+2^5+3^5+…..+N^5
-for multiple values of N simultaneously using Pool.
-Input
-[1000000,
-2000000,
-3000000,
-4000000]
-Measure total execution time.
+Write a program that calculates factorials of multiple numbers
+simultaneously using multiprocessing.Pool.
 '''
 import multiprocessing
+import os
 
-def Multi(No):
-    Multi = 1
-    Sum = 1
+def Factorial(No):
+    Fact = 1
     for i in range(1,No+1):
-        for j in range(1,5+1):
-            Multi = j * Multi 
+        Fact = Fact * i
 
-        print(Multi)
+    return Fact
                 
 
 ###########################################################################
@@ -31,13 +23,14 @@ def Multi(No):
 ###########################################################################
 
 def main():
-    No = 5
+    No = [20]
 
     tobj = multiprocessing.Pool()
 
-    Multi(No)
-    #Result = tobj.map(Multi,No)
-  
+    result = tobj.map(Factorial,No)
+
+    print("Pid is :",os.getpid())
+    print(result)
 
 if __name__ == "__main__":
     main()

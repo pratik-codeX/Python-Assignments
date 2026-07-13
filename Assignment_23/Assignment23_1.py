@@ -12,12 +12,13 @@ Expected Output
 '''
 
 import multiprocessing
+import os
 
-def SquareSum(No):
+def SumEven(No):
     Sum = 0
-    Result = []
-    for i in range(1,No):
-        Sum = Sum + i * i
+    for i in range(No+1):
+        if i % 2 == 0:
+            Sum = i + Sum
         
     return Sum
 
@@ -26,9 +27,9 @@ def main():
     Arr = [1000000]
 
     aobj = multiprocessing.Pool()
+    Result = aobj.map(SumEven,Arr)
 
-    Result = aobj.map(SquareSum,Arr)
-
+    print("Process Id is :",os.getpid())
     print(Result)
 
 if __name__ == "__main__":

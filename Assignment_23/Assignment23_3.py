@@ -1,28 +1,18 @@
 '''
-3. For every number in the given list, count how many prime numbers
-exist between 1 and N using multiprocessing Pool.
-Example
-10000
-20000
-30000
-40000
-Display total prime count for each number.
+Write a program that counts how many even numbers exist
+between 1 and N using Pool.map().
 '''
 import multiprocessing
 
-def CountPrime(No):
+def CountEven(No):
+    Sum = 0
     Count = 0
-
-    for i in range(2,No+1):
-        for j in range(2,i):
-            print(j,"Dividing to ",i)
-            if i % j == 0:
-                print(i)
+    for i in range(No):
+        if i % 2 == 0:
+            Count = Count +1
+        
+    return Count
             
-            
-                
-                
-
 ###########################################################################
 ##   	Function Name  	:  main
 ##  	Description    	:  Client 
@@ -33,9 +23,13 @@ def CountPrime(No):
 ###########################################################################
 
 def main():
-    No = 16
+    Arr = [1000000, 2000000, 3000000, 4000000]
+    
+    tobj = multiprocessing.Pool()
 
-    Ret = CountPrime(No)
+    Result = tobj.map(CountEven,Arr)
+    
+    print(Result)
 
     
 if __name__ == "__main__":

@@ -1,24 +1,17 @@
 '''
-2. Write a program that calculates factorials of multiple numbers
-simultaneously using Pool.map().
-Input
-[10,15,20,25]
-Display
-•
-•
-•
-Process ID
-Input Number
-Factorial
+Write a Python program using multiprocessing.Pool to calculate the
+sum of all odd numbers from 1 to N.
 '''
 import multiprocessing
+import os
 
-def Factorial(No):
-    Fact = 1
-    for i in range(1,No+1):
-        Fact = Fact * i
+def SumOdd(No):
+    Sum = 0
+    for i in range(No+1):
+        if i % 2 != 0:
+            Sum = i + Sum
         
-    return Fact
+    return Sum
 
 ###########################################################################
 ##   	Function Name  	:  main
@@ -30,22 +23,15 @@ def Factorial(No):
 ###########################################################################
 
 def main():
-    Lst = []
-    No = 0
-    Size = int(input("Enter the size of list :"))
-
-    for i in range(Size):
-        No = int(input("Enter number :"))
-        Lst.append(No)
-
-    print(Lst)
+    Lst = [1000000]
 
     p1 = multiprocessing.Pool()
 
-    Ret = p1.map(Factorial,Lst)
+    Ret = p1.map(SumOdd,Lst)
 
+    print("Process id is :",os.getpid())
     print(Ret)
 
 if __name__ == "__main__":
     main()
-    print("Exit from main")
+    

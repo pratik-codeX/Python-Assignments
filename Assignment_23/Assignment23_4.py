@@ -5,25 +5,20 @@ Design a Python application that creates two threads.
 •Return the results to the main thread and display them.
 '''
 
-import threading
+import multiprocessing
 
 List = [10,20,30]
 Sum = 0
 Multi = 0
 
-def Sum():
-    global List
-    global Sum
+def CountOdd(No):
     Sum = 0
-    for i in List:
-        Sum = Sum + i
-
-def  Multi():
-    global List
-    global Multi
-    Multi = 1
-    for i in List:
-        Multi = Multi * i
+    Count = 0
+    for i in range(No):
+        if i % 2 != 0:
+            Count = Count +1
+        
+    return Count
 
 ###########################################################################
 ##   	Function Name  	:  main
@@ -35,19 +30,12 @@ def  Multi():
 ###########################################################################
 
 def main():
-    Arr = [10,20,30,40]
-    t1 = threading.Thread(target=Sum)
-    t2 = threading.Thread(target=Multi)
+    Arr = [100,200,300,400]
+    
+    tobj = multiprocessing.Pool()
 
-    t1.start()
-    t2.start()
-
-    t1.join()
-    t2.join()
-
-    print(List)
-    print("Sum is :",Sum)
-    print("Multiplication is :",Multi)
+    Result = tobj.map(CountOdd,Arr)
    
+    print(Result)
 if __name__ == "__main__":
     main()
