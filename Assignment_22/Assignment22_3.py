@@ -12,16 +12,16 @@ import multiprocessing
 
 def CountPrime(No):
     Count = 0
-
     for i in range(2,No+1):
-        for j in range(2,i):
-            print(j,"Dividing to ",i)
+        Flag = True
+        for j in range(2,i+1//2):
             if i % j == 0:
-                print(i)
-            
-            
-                
-                
+                Flag = False
+
+        if Flag == True:
+            Count = Count + 1
+
+    return Count
 
 ###########################################################################
 ##   	Function Name  	:  main
@@ -33,10 +33,13 @@ def CountPrime(No):
 ###########################################################################
 
 def main():
-    No = 16
+    No = [10000,20000,30000,400000]
 
-    Ret = CountPrime(No)
+    tobj = multiprocessing.Pool()
 
+    Result = tobj.map(CountPrime,No)
+    
+    print(Result)
     
 if __name__ == "__main__":
     main()

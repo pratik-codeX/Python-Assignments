@@ -10,16 +10,17 @@ Input
 Measure total execution time.
 '''
 import multiprocessing
+import os 
+import time
 
 def Multi(No):
     Multi = 1
-    Sum = 1
+    Sum = 0
     for i in range(1,No+1):
-        for j in range(1,5+1):
-            Multi = j * Multi 
+        for j in range(5):
+            Multi = i * Multi
 
-        print(Multi)
-                
+    return Multi
 
 ###########################################################################
 ##   	Function Name  	:  main
@@ -31,13 +32,17 @@ def Multi(No):
 ###########################################################################
 
 def main():
-    No = 5
+    List = [1000,50,20]
 
+    start_time = time.perf_counter()
     tobj = multiprocessing.Pool()
 
-    Multi(No)
-    #Result = tobj.map(Multi,No)
-  
+    Result = tobj.map(Multi,List)
+    
+    print(Result)
 
+    end_time = time.perf_counter()   
+
+    print(f"Time for executetion is :{end_time - start_time}") 
 if __name__ == "__main__":
     main()

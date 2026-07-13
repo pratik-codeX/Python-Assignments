@@ -12,6 +12,7 @@ Input Number
 Factorial
 '''
 import multiprocessing
+import os
 
 def Factorial(No):
     Fact = 1
@@ -45,6 +46,7 @@ def main():
     Ret = p1.map(Factorial,Lst)
 
     print(Ret)
+    print("Process id is :",os.getpid())
 
 if __name__ == "__main__":
     main()
