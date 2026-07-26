@@ -7,12 +7,11 @@ Demo.txt Hello.txt
 Expected Output:
 Success OR Failure
 '''
-import io
 import sys
 import hashlib
 
-def CalculateChecksum(FileName1,FileName2):
-    fobj = open(FileName1,"rb")
+def CalculateChecksum(FileName):
+    fobj = open(FileName,"rb")
 
     hobj = hashlib.md5()
 
@@ -20,8 +19,12 @@ def CalculateChecksum(FileName1,FileName2):
 
     while(len(Buffer) > 0):
         hobj.update(Buffer)
+        Buffer = fobj.read(1000)
 
-    
+    fobj.close()
+
+    return hobj.hexdigest()
+
 def main():
 
     try:
@@ -42,9 +45,11 @@ def main():
     except Exception as eobj:
         print("Error :",eobj)
 
-    ret = CalculateChecksum("Hello.txt","Demo.txt")
+    ret1 = CalculateChecksum(FileName1)
+    ret2 = CalculateChecksum(FileName2)
+
         
-    if ret == True:
+    if ret1 == ret2:
         print("Content Inside files are same")
     else:
         print("Content Inside files are not same")
