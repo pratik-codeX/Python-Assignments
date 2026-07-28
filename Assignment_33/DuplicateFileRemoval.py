@@ -15,11 +15,11 @@ def DirectoryTraversal(DirectoryPath):
     
     for Dir,Sub,File in os.walk(DirectoryPath):
         for fname in File:
-
+            
             pass
 
 def DeleteDuplicate(DirectoryPath):
-    
+
 
 
 def main():
