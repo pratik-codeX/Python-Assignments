@@ -11,48 +11,65 @@ Handle the situation where the file does not exist.
 
 import schedule
 import datetime
+import time
 import os
 
-def monitor_file(Filename):
 
-    if os.path.exists(Filename) == False:
-        print("File Does not Exist in this Directory")
+def checkfile_exists(FilePath,FileName):
+    Flag = False
+    ret = os.path.isdir(FilePath)
+    if ret == False:
+        print("Invalid Input its Not Directory")
         return
-    
-    fname = open(Filename,"r")
+
+    for DirName,SubDir,filename in os.walk(FilePath):
+        for fname in filename:
+            if fname == FileName:
+                fnme = os.path.join(DirName,fname)
+                Flag = True
+
+    if Flag == False:
+        print("File not Found")
+        return FileNotFoundError
+    else:
+        return fnme
+                        
+def monitor_file(FilePath,Filename):
+
+    fname = checkfile_exists(FilePath,Filename)
+
+    try:
+        fobj = open(fname,"a")
+    except Exception as eobj:
+        print("File not Found")
+        return
+
+    fobj = open(fname,"a")
 
     dobj = datetime.datetime.now()
+    ptr = fobj.seek(0,2)
 
-    fobj = fname.seek(0,2)
     date_time = dobj.strftime("%d-%m-%Y and %I:%M")
-    print(f"File Size is :{fobj} bytes")
+
+    log = open("FileSizeLog.txt","a")
+
+    log.write(f"File Name is :{fname} and Size of File is : {ptr} \n Date and Time : {date_time}\n\n")
 
 def main():
 
     FilePath = input("Enter path : ")
     Fname = input("Enter File Name :")
-    Flag = True
 
-
-    
-    for DirName,SubDir,FileName in os.walk(FilePath):
-        for fname in FileName:
-            if os.path.exists(fname) == Flag:
-                monitor_file(Fname)
-            else:
-                Flag = False
-
-    if Flag == False:
-        print("File Does not Exist")
+    monitor_file(FilePath,Fname)
                 
-    #print("Automation Script Started...")
+    print("Automation Script Started...")
 
-    #schedule.every(5).minutes.do(monitor_file)
+    schedule.every(5).seconds.do(monitor_file,FilePath,Fname)
 
-    #while(True):
-        #  schedule.run_pending()
+    while(True):
+        schedule.run_pending()
 
-        #time.sleep(1)
+        time.sleep(1)
 
     print("End of Automation")
 
