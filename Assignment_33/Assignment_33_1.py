@@ -67,8 +67,6 @@ def DeleteDuplicate(DirectoryName):
 
     print("Total Deleted Files : ",TotalDeleted)
 
-
-
 def main():
 
     print("Automation Started...")
