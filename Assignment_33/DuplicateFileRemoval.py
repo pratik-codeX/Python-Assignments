@@ -1,24 +1,82 @@
 import sys
 import os
 import email
+import hashlib
 import email_validator
+import io
+import time
 
-def DirectoryTraversal(DirectoryPath):
+def CheckSum(FileName):
+    hobj = hashlib.md5()
+
+    if os.path.isfile(FileName):
+        fobj = open(FileName,"rb")
+    else:
+        print("Exception : [Errno 2] No such file or directory:"+ FileName+"Special Files")
+        return                                                                                                                                                                                                                                  
+    Buffer = fobj.read(io.DEFAULT_BUFFER_SIZE)
+
+    while(len(Buffer) > 0):
+        hobj.update(Buffer)
+        Buffer = fobj.read(io.DEFAULT_BUFFER_SIZE)
+
+    fobj.close()
+
+    return hobj.hexdigest()
+
+def FindDuplicate(DirectoryPath):
+    Duplicate = {}
     ret = os.path.exists(DirectoryPath)
     if ret == False:
-        print("The Directory Does not Exists")
-        return
+        return "The Directory Does not Exists"
+    
     ret = os.path.isdir(DirectoryPath)
     if ret == False:
-        print("Invalid Folder")
-        return
+        return "Invalid Folder"
     
     for Dir,Sub,File in os.walk(DirectoryPath):
         for fname in File:
-            
-            pass
+            fname = os.path.join(Dir,fname)
 
+            checksum = CheckSum(fname)
+
+            if checksum in Duplicate:
+                Duplicate[checksum].append(fname)
+            else:
+                Duplicate[checksum] = [fname]
+
+    return Duplicate
+    
 def DeleteDuplicate(DirectoryPath):
+
+    start_time = time.perf_counter()    
+
+    myDict = FindDuplicate(DirectoryPath)
+
+    end_time = time.perf_counter()
+
+    Total_time_Scanned = end_time - start_time
+
+    print("Total Time for Directory Scanning : ",Total_time_Scanned)
+
+    remove = lambda x :  len(x) > 1 
+
+    result = list(filter(remove,myDict.values()))
+
+    TotalFiles = 0
+    DeleteFiles = 0
+    for subresult in result:
+        Flag = False
+        for sub in subresult:
+            if Flag == False:
+                pass
+            else:
+                #os.remove(sub)
+                pass
+            DeleteFiles = DeleteFiles + 1
+            Flag = True
+
+    TotalFiles = TotalFiles + 1
 
 
 
