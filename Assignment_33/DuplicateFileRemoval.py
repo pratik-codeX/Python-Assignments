@@ -78,8 +78,6 @@ def DeleteDuplicate(DirectoryPath):
 
     TotalFiles = TotalFiles + 1
 
-
-
 def main():
     Boarder = "-"*50
   

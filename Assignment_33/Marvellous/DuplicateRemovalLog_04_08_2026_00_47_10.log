@@ -1,0 +1,26 @@
+Total Files Scanned are :1
+Checksum fo Duplicated :['Hello/Pune/ScheduleDemo2.py']
+Total Files Scanned are :2
+Checksum fo Duplicated :['Hello/Pune/ScheduleDemo4.py']
+Total Files Scanned are :3
+Total Duplicate Files are :1
+Total Files Scanned are :4
+Checksum fo Duplicated :['Hello/Pune/ScheduleDemo1 copy 2.py']
+Total Files Scanned are :5
+Total Duplicate Files are :1
+Total Files Scanned are :6
+Total Duplicate Files are :1
+Total Files Scanned are :7
+Checksum fo Duplicated :['Hello/Pune/ScheduleDemo3.py']
+**************************************************
+		Automation Script Started
+**************************************************
+Starting Time of Directory Scanning is :2026-08-04 00:47:10.685303
+Completion time for Directory Scanning is : 0.0002610260016808752
+Name of Directory Scanned : Hello
+Total Number of Files Deleted : 2
+Path of Duplicate Deleted File : Hello/Pune/ScheduleDemo4 copy.py
+Total Number of Files Deleted : 8
+Path of Duplicate Deleted File : Hello/Pune/ScheduleDemo1.py
+Total Number of Files Deleted : 18
+Path of Duplicate Deleted File : Hello/Pune/ScheduleDemo1 copy.py

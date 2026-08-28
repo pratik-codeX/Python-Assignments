@@ -35,5 +35,4 @@ for i in Y_test.values:
 
 print("User defined Accuracy is : ",(flag / len(Y_test)) * 100)
 
-print("Accuracy is : ",accuracy_score(X_test,y_pred))
-
+print("Accuracy is : ",accuracy_score(Y_test,y_pred))
