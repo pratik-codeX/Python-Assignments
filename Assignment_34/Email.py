@@ -23,9 +23,9 @@ def Marvellous_send_mail(sender,app_password,receiver,subject,body):
 def main():
     sender_email = "pratikraut.codex@gmail.com"
 
-    app_password = "itwognxwlsadmfte"
+    app_password = "****************"
 
-    receiver_email = "pratikshapare12@gmail.com"
+    receiver_email = "*************************"
 
 
     subject = "I Love You Pratiksha, Testing Python Script"
