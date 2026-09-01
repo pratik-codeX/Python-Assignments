@@ -28,7 +28,7 @@ def main():
     receiver_email = "pratikshapare12@gmail.com"
 
 
-    subject = "I Love You Pratiksha, Testing Python Script"
+    subject = "Testing Python Script"
 
     body = """
             Mand Pori,
