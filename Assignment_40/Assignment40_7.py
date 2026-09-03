@@ -16,7 +16,7 @@ Y = df["FinalResult"]
 
 X_train,X_test,Y_train,Y_test = train_test_split(X,Y,test_size=0.8)
 
-model = DecisionTreeClassifier(random_state=42)
+model = DecisionTreeClassifier(random_state=0)
 
 model = model.fit(X_train,Y_train)
 
@@ -27,9 +27,6 @@ print("Values of Y_test are : \n",Y_test.values)
 
 #print("X test : ",X_test)
 #print("Values of Y_pred are :\n",y_pred)
-
-for 
-
 
 cnt = 0
 flag = 0

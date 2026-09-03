@@ -28,15 +28,17 @@ print("Values of Y_test are : \n",Y_test.values)
 #print("X test : ",X_test)
 #print("Values of Y_pred are :\n",y_pred)
 
-for 
-
-
 cnt = 0
 flag = 0
+miss_classified = 0
 for i in Y_test.values:
     if i != y_pred[cnt]:
-        print("Miss Classified Row is : ",X_test)
+        print("Miss Classified Row is : ",X_test.values[i])
+        miss_classified += 1
     cnt = cnt+1
+
+
+print("Miss Classified are : ",miss_classified)
 
 #print("User defined Accuracy is : ",(flag / len(Y_test)) * 100)
 
