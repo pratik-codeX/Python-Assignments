@@ -25,16 +25,8 @@ y_pred = model.predict(X_test)
 print("Y pred is : ",y_pred)
 print("Values of Y_test are : \n",Y_test.values)
 
-#print("X test : ",X_test)
-#print("Values of Y_pred are :\n",y_pred)
+print("X test : ",X_test)
+print("Values of Y_pred are :\n",y_pred)
 
-cnt = 0
-flag = 0
-for i in Y_test.values:
-    if i != y_pred[cnt]:
-        print("Miss Classified Row is : ",X_test)
-    cnt = cnt+1
 
-#print("User defined Accuracy is : ",(flag / len(Y_test)) * 100)
-
-#print("Accuracy is : ",accuracy_score(Y_test,y_pred))
+print("Accuracy is : ",accuracy_score(Y_test,y_pred))
