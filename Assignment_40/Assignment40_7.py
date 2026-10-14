@@ -28,9 +28,4 @@ print("Values of Y_test are : \n",Y_test.values)
 print("X test : ",X_test)
 print("Values of Y_pred are :\n",y_pred)
 
-
 print("Accuracy is : ",accuracy_score(Y_test,y_pred)*100)
-
-#the Accuracy that generated at 0 is 50 to 95
-#the Accuracy that generated at 10 is 90 to 100
-#the Accuracy that generated at 42 is mostly 100 and fluctuates between 90 

@@ -6,6 +6,8 @@ import pandas as pd
 from sklearn.metrics import accuracy_score,confusion_matrix
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.tree import plot_tree
+import matplotlib.pyplot as plt
 
 df = pd.read_csv("./student_performance_ml.csv")
 
@@ -16,9 +18,9 @@ Y = df["FinalResult"]
 
 X_train,X_test,Y_train,Y_test = train_test_split(X,Y,test_size=0.8)
 
-model = DecisionTreeClassifier(random_state=0)
+result = DecisionTreeClassifier(random_state=42)
 
-model = model.fit(X_train,Y_train)
+model = result.fit(X_train,Y_train)
 
 y_pred = model.predict(X_test)
 
@@ -28,9 +30,10 @@ print("Values of Y_test are : \n",Y_test.values)
 print("X test : ",X_test)
 print("Values of Y_pred are :\n",y_pred)
 
-
 print("Accuracy is : ",accuracy_score(Y_test,y_pred)*100)
 
-#the Accuracy that generated at 0 is 50 to 95
-#the Accuracy that generated at 10 is 90 to 100
-#the Accuracy that generated at 42 is mostly 100 and fluctuates between 90 
+fig = plt.figure(figsize = (10,5))
+
+plot_tree(result,feature_names=list(X.columns),filled=True,label='root',max_depth=10,fontsize=10)
+
+plt.show()
