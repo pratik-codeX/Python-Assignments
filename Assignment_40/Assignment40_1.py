@@ -30,3 +30,5 @@ for i in model.feature_importances_:
     Count += 1
     if i == 1:
         print(f"Feature {model.feature_names_in_[Count]} has more importance  i.e. {i*100}")
+        
+
